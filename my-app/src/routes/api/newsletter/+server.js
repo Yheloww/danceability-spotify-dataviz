@@ -1,10 +1,11 @@
-const client_id = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-const client_secret = import.meta.env.VITE_SPOTIFY_CLIENT_SECRET;
-const refresh_token = import.meta.env.VITE_SPOTIFY_REFRESH_TOKEN;
-const redirect_uri = "http://127.0.0.1:5173/"
+const client_id = import.meta.env.VITE_CLIENT_ID;
+const client_secret = import.meta.env.VITE_CLIENT_SECRET;
+const refresh_token = import.meta.env.VITE_REFRESH_TOKEN;
+const redirect_uri = "http://127.0.0.1:5173"
 const token_endpoint = `https://accounts.spotify.com/api/token`;
 
-export const get = async () => {
+
+export const GET = async () => {
     const { access_token } = await fetch(token_endpoint, {
         method: 'POST',
         headers: {
