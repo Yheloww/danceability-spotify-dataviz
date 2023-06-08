@@ -1,30 +1,33 @@
 
-import { VITE_REFRESH_TOKEN } from "$env/static/private"
-const redirect_uri = "http://127.0.0.1:5173"
-const now_playing_endpoint = `https://api.spotify.com/v1/me/player/currently-playing`;
+/** @type {import('./$types').PageServerLoad} */
+import { VITE_CLIENT_ID } from "$env/static/private"
+import { VITE_CLIENT_SECRET } from "$env/static/private"
+import { CODE } from "$env/static/private"
 
-export async function GET() {
-    const {access_token} = VITE_REFRESH_TOKEN
 
-    const res = await fetch(now_playing_endpoint, {
-        headers: {
-            Authorization: `Bearer ${access_token}`
-        }
-    })
+const redirect_uri = "http://127.0.0.1:5173/"
+// url for first code
+const params = `client_id=${VITE_CLIENT_ID}&response_type=code&redirect_uri=${redirect_uri}&scope=user-read-currently-playing%20user-top-read`
+let url_code = 'https://accounts.spotify.com/authorize?' + params;
 
-    if (res.status === 204 || res.status > 400) {
-        return {body: { isPlaying: false }}
-    }
 
-    const song = await res.json();
-    const isPlaying = song.is_playing;
-    const title = song.item.name;
-    const artist = song.item.artists.map((_artist) => _artist.name).join(', ');
-    const album = song.item.album.name;
-    const albumImageUrl = song.item.album.images[0].url;
-    const songUrl = song.item.external_urls.spotify;
+//acces token request 
+export const GET = async () => {
+    let url_code_token ='https://accounts.spotify.com/api/token'
 
-    return {
-    body: {title, artist, album, isPlaying, albumImageUrl, songUrl},
-    }
+const access_token = 
+await fetch(url_code_token, {
+    method: 'POST',
+    headers: {
+        'Authorization': 'Basic ' + (Buffer.from(VITE_CLIENT_ID + ':' + VITE_CLIENT_SECRET).toString('base64')),
+        'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    body: `grant_type=client_credentials`,
+    json: true
+})
+.then(response => response.json())
+.then(data => {
+    return data
+})
+    return  new Response(JSON.stringify(access_token))
 }
