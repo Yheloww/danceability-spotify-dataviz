@@ -1,9 +1,18 @@
 <script>
-    /** @type {import('./$types').PageData} */
-    export let data;
+    import * as d3 from "d3"
+    import { onMount } from "svelte";
 
-    export let names = data.items.map(data => data.id)
+    onMount( () => {
+        d3.json("Kid_cudi.json", function(data) {
+    console.log(data);
+    });
+    }
+    ) 
+
+
+
 </script>
 
-
-<h1>{names}</h1>
+<!-- {#each kidCudi as dat}
+<h1>{dat}</h1>
+{/each} -->
