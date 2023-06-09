@@ -1,12 +1,11 @@
 
 /** @type {import('./$types').PageServerLoad} */
 
-export async function load({params}) {
+import data from './Kid_cudi.json' assert { type: 'json' };
 
-    const access_token = await fetch('http://127.0.0.1:5173/api/artist')
-    .then(res => res.json())
+export async function load() {
     
-    return access_token
+    return {data}
 
 }
 
