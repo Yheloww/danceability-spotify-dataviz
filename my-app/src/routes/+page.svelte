@@ -20,8 +20,11 @@ const scale = d3.scaleLinear()
 <div class="song">
     <h1>{dat.name}</h1>
 <svg>
-    <circle cx=50 cy=50  r={scale(dat.Audio_features.danceability)}></circle>
+    <circle cx=50 cy=50  r={scale(dat.Audio_features.energy)}></circle>
+    <circle cx=150 cy=50  r={scale(dat.Audio_features.danceability)} fill="aquamarine"></circle>
+
 </svg>
+    <p>{dat.Audio_features.energy}</p>
 </div>
 {/if}
 {/each}

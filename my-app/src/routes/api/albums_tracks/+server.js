@@ -16,10 +16,12 @@ export async function GET() {
 
     const albums =  await API.get(url_artist, access_token)
     .then(res => { 
-        return res.items.filter(data => data.album_type === "album").map(selectProps("id", "name"))})
+        return res.items.filter(data => data.album_type === "album").map(selectProps("id", "name","release_date"))})
 
     let albumsId = albums.map(data => data.id)
     let albumsName = albums.map(data => data.name)
+    let albumsdate = albums.map(data => data.release_date)
+
     let res_arr= []
 
     for(let i = 0; i < albumsId.length; i ++) {
@@ -30,6 +32,7 @@ export async function GET() {
                     container["name"] = item.name;
                     container["id"] = item.id;
                     container["album"] = albumsName[i];
+                    container["date_album"] = albumsdate[i];
                     return container
         }) })
         let res_obj = {}
@@ -41,6 +44,7 @@ export async function GET() {
     let tracks_name = res_arr.map((data) => data.tracks.map(data => data.name)).flat(1)
     let tracks_id = res_arr.map((data) => data.tracks.map(data => data.id)).flat(1)
     let album_name = res_arr.map((data) => data.tracks.map(data => data.album)).flat(1)
+    let album_date = res_arr.map((data) => data.tracks.map(data => data.date_album)).flat(1)
 
 
     let feature_array = [];
@@ -53,6 +57,7 @@ export async function GET() {
         feature_object["album_name"] = album_name[i]
         feature_object["name"] = tracks_name[i]
         feature_object["id"] = tracks_id[i]
+        feature_object["date_album"] = album_date[i]
         feature_object["Audio_features"] = res
         feature_array.push(feature_object);
 
