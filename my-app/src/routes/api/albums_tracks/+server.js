@@ -53,7 +53,7 @@ export async function GET() {
         feature_object["album_name"] = album_name[i]
         feature_object["name"] = tracks_name[i]
         feature_object["id"] = tracks_id[i]
-        feature_object["Audio-features"] = res
+        feature_object["Audio_features"] = res
         feature_array.push(feature_object);
 
     }
