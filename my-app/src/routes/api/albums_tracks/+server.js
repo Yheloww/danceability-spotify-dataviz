@@ -33,6 +33,7 @@ export async function GET() {
                     container["id"] = item.id;
                     container["album"] = albumsName[i];
                     container["date_album"] = albumsdate[i];
+                    container["track_number"] = item.track_number;
                     return container
         }) })
         let res_obj = {}
@@ -45,6 +46,7 @@ export async function GET() {
     let tracks_id = res_arr.map((data) => data.tracks.map(data => data.id)).flat(1)
     let album_name = res_arr.map((data) => data.tracks.map(data => data.album)).flat(1)
     let album_date = res_arr.map((data) => data.tracks.map(data => data.date_album)).flat(1)
+    let track_number = res_arr.map((data) => data.tracks.map(data => data.track_number)).flat(1)
 
 
     let feature_array = [];
@@ -58,11 +60,11 @@ export async function GET() {
         feature_object["name"] = tracks_name[i]
         feature_object["id"] = tracks_id[i]
         feature_object["date_album"] = album_date[i]
-        feature_object["Audio_features"] = res
-        feature_array.push(feature_object);
-
+        feature_object["track_number"] = track_number[i]
+        let obj = {...feature_object, ...res}
+        feature_array.push(obj);
     }
-    writeFile('mac_miller.json', JSON.stringify(feature_array), (error) => {
+    writeFile('mac_miller_simple.json', JSON.stringify(feature_array), (error) => {
         if (error) {
             throw error;
         }
