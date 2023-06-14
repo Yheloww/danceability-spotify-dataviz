@@ -64,6 +64,10 @@ export async function GET() {
         let obj = {...feature_object, ...res}
         feature_array.push(obj);
     }
+
+    let line 
+
+
     writeFile('mac_miller_simple.json', JSON.stringify(feature_array), (error) => {
         if (error) {
             throw error;
