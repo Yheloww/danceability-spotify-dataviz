@@ -120,7 +120,7 @@
 <style>
     .wrapper {
         margin-inline: 2rem;
-        max-width: 80rem;
+        max-width: 100rem;
         margin: 0 auto;
     }
     h1{
