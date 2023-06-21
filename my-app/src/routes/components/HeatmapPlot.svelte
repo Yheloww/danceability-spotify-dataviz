@@ -7,8 +7,8 @@
     let width;
     let height = 850;
     let margin = {left: 20, right: 50, top: 50, bottom: 50}
-    let color_start = "#eb220c"
-    let color_end = "#0c0ceb"
+    let color_start = "black"
+    let color_end = "#87cfa2"
 
     let one_album = data.filter(data => data.album_name == "Swimming")
     console.log(one_album)
@@ -42,9 +42,9 @@
                   >{album}</text>
 
             {#each data.filter(data => data.album_name == album) as track}
-                <circle cx="{track.track_number * width*0.030 + margin.left}"
+                <circle cx="{track.track_number * width*0.037 + margin.left}"
                         cy="{(i + 1)* 80}"
-                        r={width*0.012}
+                        r={width*0.017}
                         fill={colorScale(track.danceability)} 
                         on:mouseover={() => {
                             hoveredData = track
@@ -87,13 +87,15 @@
         text-align: center;
     }
      .wrapper {
-        margin-block: 2rem;
         margin-inline: 2rem;
-        max-width: 100rem;
+        max-width: 80rem;
         margin: 0 auto;
+        border: 5px solid var(--accent);
+        border-radius: 2rem;
+        padding: 1rem;
+
     }
     svg {
-        border: 2px solid red;
     }
     text {
         font-size: 20px;

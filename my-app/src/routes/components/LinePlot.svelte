@@ -8,7 +8,7 @@
     export let album_data;
     export let title;
     let width;
-    let height = 600;
+    let height = 800;
     //parser
     const parseTime = d3.timeParse("%Y-%m-%d");
     //margin 
@@ -16,13 +16,13 @@
 
     const params = [{ "name" : "danceability",
                     "line" : danceability,
-                      "color" : "red"},
+                      "color" : "#87cfa2"},
                       { "name" : "valence",
                       "line" : valence_test,
-                      "color" : "blue"},
+                      "color" : "#44ab9f"},
                       { "name" : "energy",
                       "line" : energy,
-                      "color" : "orange"}]
+                      "color" : "black"}]
 
 
     // scales
@@ -50,6 +50,7 @@
 </script>
 <div class="wrapper">
     <h1>{title}</h1>
+    <!-- <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Eligendi tenetur, reiciendis nulla consectetur autem laborum provident maiores officia aspernatur recusandae quod minus explicabo assumenda ipsa sed pariatur animi quisquam alias. Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat corporis recusandae sit natus, accusantium quia eaque ab eligendi nesciunt provident sunt sapiente. Error vitae fugit quos ipsa tenetur recusandae odit! Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet excepturi a quam veniam laborum ex non temporibus, corporis cum, necessitatibus dolore magnam praesentium! Illum a quidem quibusdam tempora magnam maiores?</p> -->
 
     <div bind:clientWidth={width}
     on:mouseleave={() => {
@@ -63,7 +64,7 @@
                     <path 
                     d="{energy}"
                     fill="none"
-                    stroke="orange"
+                    stroke="black"
                     opacity={ hoveredData ? param_name && param_name !== "energy" ? "0.2" : "1.0" : "1.0"}
                     stroke-width="5"/>
                 </g>
@@ -71,7 +72,7 @@
                     <path 
                     d="{valence_test}"
                     fill="none"
-                    stroke="blue"
+                    stroke="#44ab9f"
                     opacity={ hoveredData ? param_name && param_name !== "valence" ? "0.2" : "1.0" : "1.0"}
                     stroke-width="5"/>
                 </g>
@@ -79,7 +80,7 @@
                     <path 
                     d="{danceability}"
                     fill="none"
-                    stroke="red"
+                    stroke="#87cfa2"
                     opacity={ hoveredData ? param_name && param_name !== "danceability" ? "0.2" : "1.0" : "1.0"}
                     stroke-width="5"/>
                 </g>
@@ -120,8 +121,13 @@
 <style>
     .wrapper {
         margin-inline: 2rem;
-        max-width: 100rem;
+        max-width: 80rem;
         margin: 0 auto;
+        margin-bottom: 5rem;
+        border: 5px solid var(--accent);
+        border-radius: 2rem;
+        padding: 1rem;
+
     }
     h1{
         text-align: center;
@@ -138,5 +144,9 @@
     }
     path {
         transition: all 300ms ease;
+    }
+    p {
+        margin-block: 2rem;
+        margin-right:10rem;
     }
 </style>
