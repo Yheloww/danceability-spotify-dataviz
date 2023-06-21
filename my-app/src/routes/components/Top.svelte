@@ -1,9 +1,10 @@
 <script>
     import { max } from "d3-array";
-    import data from "../mac_miller_simple.json";
     import * as d3 from "d3"
     import { each } from "svelte/internal";
   import { select } from "d3";
+
+    export let data;
     const simple_albums = data.filter(data => !data.album_name.includes("Commentary")).filter(data => !data.album_name.includes("Remastered")).filter(data => !data.album_name.includes("Deluxe")).filter(data => !data.album_name.includes("London"))
     $: choice ="danceability";
 
