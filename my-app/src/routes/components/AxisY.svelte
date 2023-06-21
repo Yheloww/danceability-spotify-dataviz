@@ -16,6 +16,7 @@
         y1={yScale(point)} 
         x2={width} 
         y2={yScale(point)} 
-        stroke={point == 0 ? "black" : "#cecece"}/>
+        stroke={point == 0 ? "black" : "#cecece"}
+        stroke-dasharray={point == 0 ? "0" : "5"}/>
     {/each}
 </g>
