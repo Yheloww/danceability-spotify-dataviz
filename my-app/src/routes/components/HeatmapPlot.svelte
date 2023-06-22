@@ -10,9 +10,6 @@
     let color_start = "black"
     let color_end = "#87cfa2"
 
-    let one_album = data.filter(data => data.album_name == "Swimming")
-    console.log(one_album)
-
     let xScale = d3.scaleLinear()
                    .domain([0, 13])
                    .range([0, width])
